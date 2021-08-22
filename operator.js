@@ -54,3 +54,30 @@ console.log(0 == !! null)
 // 0 == !null -> 0 == true
 // 0 == !true -> 0 == false //number vs boolean
 // Boolean(0) == false -> fasle == false -> true
+
+
+
+const object = {
+  name: 'truong',
+  age: 18,
+  contry: '123',
+  gender: 'adas'
+}
+
+
+console.log(object)
+delete object.age
+delete object.contry
+delete object.gender
+console.log(object)
+
+
+const numbs = ['truong', 'minh', 'hoang']
+
+for (let num in numbs) {
+  console.log(num)
+}
+
+for (let num of numbs) {
+  console.log(num)
+}

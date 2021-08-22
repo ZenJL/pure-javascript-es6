@@ -1,7 +1,8 @@
+var hositingA;
+
 // compare reference
 const objA = {} // memory A
 const objB = {} // memory B
-
 objA.book = 'sieunhan'
 
 // console.log(objA === objB) // output: false
@@ -67,3 +68,11 @@ plus({ name: 'bc'})
 
 // truthy & falsy
 console.log('abc' === true)
+
+
+
+
+// hosting
+console.log('hositingA before: ', hositingA)
+hositingA = 1;
+console.log('hositingA after: ', hositingA)
