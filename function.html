@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>constructor function</h1>
+
+  <script> 
+    // IIFE
+    let x = '';
+    // let firstVariable = 10;
+    // let secondVariable = 20;
+    (function() {
+      let firstVariable = 10;
+      let secondVariable = 20;
+      x =  firstVariable + secondVariable
+    })()
+    console.log('this is IIFE function: ', x);
+    console.log('this is IIFE function firstVariable: ', firstVariable);
+    console.log('this is IIFE function secondVariable: ', secondVariable);
+
+
+    /* === constructor === */
+    function HttpRequest(host, port, link) {
+      this.host = host;
+      this.port = port;
+      this.link = link;
+    }
+
+    HttpRequest.prototype.printOut = function() {
+      // localhost:3000/about
+      // console.log(this.host + ":" + this.port + "/" + this.link)
+      return `${this.host}:${this.port}/${this.link}`
+    }
+
+    const httpRequest = new HttpRequest('localhost', '3000', 'about')
+    const printOut = httpRequest.printOut()
+
+    console.log(printOut)
+
+    function myFuncNotIIFE() {
+      return 'myFuncNotIIFE'
+
+    }
+
+    console.log(myFuncNotIIFE())
+
+    
+  </script>
+
+</body>
+</html>
