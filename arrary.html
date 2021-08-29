@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>Array</h1>
+
+  <script> 
+    const numbs = [
+      'truong',
+      3,
+      {
+        id: 1,
+        title: 'moval'
+      },
+      true,
+      [3, 4]
+    ];
+
+    // array string
+    const myNumbs = ['truong', 'tony', 'minh'];
+
+    // array like object
+    console.log('array like object')
+    const myTodos = [
+      {
+        id: 1,
+        title: 'lean javascript',
+      },
+      {
+        id: 2,
+        title: 'lean react',
+      },
+    ]
+    
+    // loop
+    for(const element of myTodos) {
+      console.log('for...of: ', element, element.id, element.title)
+    }
+    for(const index in myTodos) {
+      console.log('for...in: ', index)
+    }
+    for(let i = 0; i < myTodos.length; i++) {
+      console.log('loop for: ', myTodos[i])
+    }
+  </script>
+
+</body>
+</html>

@@ -51,3 +51,19 @@ console.timeEnd("es5: Time es5");
 
 console.log('es6: ', objectB)
 console.log('es5: ', objectC)
+
+// delete object
+const myDelete = {
+  firstName: 'truong',
+  lastName: 'tony'
+}
+
+delete myDelete.firstName
+
+console.log('delete obj: ', myDelete)
+
+const mayArrr = [1,2,3]
+
+delete mayArrr[1]
+
+console.log('delete arry: ', mayArrr)
