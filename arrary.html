@@ -45,6 +45,128 @@
     for(let i = 0; i < myTodos.length; i++) {
       console.log('loop for: ', myTodos[i])
     }
+
+    const arr1 = ['truong', 'minh', 'long'];
+
+    const newArr = [];
+
+    for (const element of arr1) {
+        const item = {
+          id: Math.floor(Math.random() * 100000),
+          name: element,
+        };
+      
+        // newArr.push(Object.assign({}, a));
+        newArr.push(item);
+    }
+    console.log (newArr);
+
+
+    // pop() method
+    const animals = ['lion', 'cat', 'dog']
+    animals.pop();
+    console.log('pop arrray: ', animals)
+
+    // Merging two array
+
+    const names1 = ['truong', 'minh']
+    const names2 = ['ngoc', 'bich']
+    // output: [‘truong’, ‘minh’, ‘ngoc’, ‘bich’] 
+    names1.push(...names2)
+    console.log('push array: ', names1)
+
+    // filter method
+    const todosFilter = [
+      {
+        id: 1,
+        text: 'learn javasript',
+        status: 'new'
+      },
+      {
+        id: 2,
+        text: 'learn react',
+        status: 'done'
+      },
+      {
+        id: 3,
+        text: 'learn node',
+        status: 'new'
+      }
+    ]
+
+    // arrow functions
+    const newTodosFilter = todosFilter.filter((todo, index) => todo.status === 'new')
+    console.log(" filter new todo: ", newTodosFilter)
+
+     // tranditional functions
+    const doneTodosFilter = todosFilter.filter(function(todo, index) {
+      return todo.status === 'done'
+    })
+    console.log(" filter done todo: ", doneTodosFilter)
+
+    // map method
+    const input = [
+      {key: 1, value: 10},
+      {key: 2, value: 20},
+      {key: 3, value: 30}
+    ]
+    // output:  [{1: 10}, {2: 20}, {3: 30}]     
+    const output = input.map((item) => {
+      const elementObj = {};
+      elementObj[item.key] = item.value; // 1: 10}
+      return elementObj
+    })
+    console.log('map method: ', output)
+
+    // reducer methods
+    const orders = [
+      { name: 'a', quanlity: 1, price: 200 },
+      { name: 'b', quanlity: 3, price: 500 },
+      { name: 'c', quanlity: 7, price: 100 },
+    ]
+
+    const result = orders.reduce(function(acc, curr, index, array) {
+      console.log('result: ', acc, curr, index, array)
+      acc += curr.quanlity * curr.price; // 0 += 1 * 200
+      return acc;
+    }, 0)
+    console.log('reducer: method', result)
+
+    const ordersAbc = [
+        {
+            name: 'A',
+            quantity: 2,
+            unitPrice: 100
+        },
+        {
+            name: 'B',
+            quantity: 3,
+            unitPrice: 500
+        },
+        {
+            name: 'c',
+            quantity: 7,
+            unitPrice: 100
+        }
+    ];
+    //output
+    // const output = {
+    //   {A: 100, B: 500, C: 100}
+    // }
+
+    const resultAbc = ordersAbc.reduce (function (acc, currentValue) {
+      // console.log('ab: ', currentValue)
+      // acc += currentValue.quantity * currentValue.unitPrice;
+      acc[currentValue.name] = currentValue.unitPrice
+      return acc
+      // const kq2 = b.unitPrice * b.quantity;
+      // kqTong += kq1+kq2;
+      // return kqTong;
+    }, {})
+
+    console.log(resultAbc)
+
+
   </script>
 
 </body>
