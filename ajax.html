@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>AJAX</h1>
+
+
+  <div id="root"></div>
+
+  <button type="button" onclick="loadDoc('text.txt')">load doc 1</button>
+  <button type="button" onclick="loadDoc('text2.txt')">load doc 2</button>
+
+  <script> 
+    function loadDoc(url) {
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        console.log('onreadystatechange: ', this)
+        if(this.readyState === 4 && this.status === 200) {
+          document.getElementById('root').innerHTML = this.responseText
+        }
+      }
+      xhttp.open('GET', url, true);
+      xhttp.send();
+    }
+
+  </script>
+
+</body>
+</html>
+

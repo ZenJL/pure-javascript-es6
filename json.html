@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>JSON</h1>
+
+  <script> 
+    const car = {
+      name: 'bmw',
+      color: 'red',
+      year: 2021
+    }
+
+    console.log('car: ', car)
+    const stringifyObj = JSON.stringify(car)
+    console.log('stringifyObj: ',stringifyObj)
+
+    const parseObj = JSON.parse(stringifyObj)
+    console.log('parseObj: ',parseObj)
+
+    // server
+    const data = '[{"name":"bmw","color":"red","year":2021}]'
+    const parseAbc = JSON.parse(data)
+    const isExisted = parseAbc.find(ele => ele.name === 'abc')
+    console.log('isExisted: ',isExisted)
+
+    // reviver
+    const schedule = `{
+      "meetUp": [
+        { "title": "conference", "date": "2021-10-30T12:00:00"},
+        { "title": "birhtday"}
+      ]
+    }`;
+
+    const resSche = JSON.parse(schedule, function(key, value) {
+      if(key === 'date') return new Date(value)
+      return value
+    })
+
+    console.log('resSche: ', resSche)
+
+  </script>
+
+</body>
+</html>
+

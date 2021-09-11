@@ -33,6 +33,6 @@ function findInventory(value) {
   return inventory.find(inven => inven.name === value)
 }
 
-console.log('findInventory: ', findInventory('bananas'));
+console.log('findInventory: ', findInventory('cherries'));
 // { name: 'cherries', quantity: 5 }
 
