@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+  </head>
+  <body>
+    <form id="form">
+      First Name :<input type="text" id="firstName" /> </br> </br>
+      Last Name :<input type="text" id="lastName"/> </br> </br>
+      <div id="errorMsg"></div>
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      const form = document.getElementById('form')
+      form.addEventListener('submit', function(e){
+        e.preventDefault()
+        const firstName = document.getElementById('firstName').value
+        const lastName = document.getElementById('lastName').value
+        
+        if(firstName === '' && lastName === ''){
+          document.getElementById('errorMsg').innerHTML = "Please Enter input"
+          return
+        }
+
+        const user ={
+          firstName,
+          lastName
+        }
+        const stringifyUser = JSON.stringify(user)
+        window.localStorage.setItem('user',stringifyUser)
+        const parsedUser  = JSON.parse(stringifyUser)
+
+       
+        if(parsedUser.firstName === firstName && parsedUser.lastName === lastName){
+          window.location.href= './dashboard.html'
+          alert('Login')
+        }
+      })
+    </script>
+  </body>
+</html>

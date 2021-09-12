@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Web Storage</title>
+</head>
+<body>
+  <h1>Web Storage</h1>
+
+  <form id="form">
+    First Name: <input type="text" id="firstName" /> <br /><br />
+    Last Name: <input type="text" id="lastName" /> <br /><br />
+    <div id="errorMsg"></div><br /><br />
+
+    <button type="button" onclick="loadDataFromStorage()">get user from localstore</button> <br /><br />
+    <div id="info"> </div>
+    <button type="submit" id="btnSubmit">Submit</button> <br /><br />
+  </form>
+
+  <script> 
+    function loadDataFromStorage() {
+      const user = window.localStorage.getItem('user');
+      const dataParsed = JSON.parse(user)
+      const info = document.getElementById('info');
+      info.innerHTML = `
+        First Name: ${dataParsed.firstName} <br />
+        Last Name: ${dataParsed.lastName} <br />
+      `
+    }
+
+    document.getElementById('form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      document.getElementById('errorMsg').innerHTML = ``;
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+
+      if(firstName === '' || lastName === '') {
+        document.getElementById('errorMsg').innerHTML = `Please input value`
+        return;
+      }
+
+      // filled info
+      // window.localStorage.setItem('firstName', firstName)
+      // window.localStorage.setItem('lastName', lastName)
+      const newUsers = {
+        firstName,
+        lastName
+      }
+      window.localStorage.setItem('user', JSON.stringify(newUsers))
+      window.sessionStorage.setItem('user', JSON.stringify(newUsers))
+
+      document.location.href = '/dashboard.html'
+    })
+  </script>
+
+</body>
+</html>
+
