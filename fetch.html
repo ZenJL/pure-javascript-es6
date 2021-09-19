@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date & Time</title>
+</head>
+<body>
+
+  <h1>Fetch api</h1>
+
+
+  <div id="users"></div>
+  <br />
+
+  <button type="button" onclick="loadUser()">Load User</button>
+
+  <br /><br/>
+  <h3>Add user</h3>
+  First Name: <input id="firstName" />
+  Last Name: <input id="lastName" />
+
+  <button type="button" onclick="addUser()">Add User</button>
+
+  <script> 
+    // api: https://github.com/nhattruongniit/tony-json-server
+    // fetch api: https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+    const backend = 'https://tony-json-server.herokuapp.com';
+
+    function loadUser() {
+      fetch(`${backend}/api/users`) // return response 
+        .then(response => response.json()) // return data
+        .then(data => {
+          const users = document.getElementById('users');
+          const dataUser = data.data;
+          dataUser.forEach(user => {
+            users.innerHTML += `
+              <div>First Name: ${user.firstName}</div>
+            `
+          })
+        })
+    }
+
+    // add users
+    function addUser() {
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+
+      if(firstName === '' || lastName === '') {
+        console.log('please enter input');
+        return;
+      }
+
+      const user = {
+        firstName,
+        lastName,
+        "avatar": "https://cdn.fakercloud.com/avatars/ManikRathee_128.jpg",
+        "email": "aincere@april.biz",
+        "role": "operator",
+        "location": []
+      }
+
+      // post user
+      fetch(`${backend}/api/users`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('add user: ', data)
+      })
+
+    }
+
+  </script>
+
+</body>
+</html>
+

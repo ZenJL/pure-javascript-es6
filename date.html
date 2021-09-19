@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Date & Time</title>
+</head>
+<body>
+
+  <h1>Date & Time</h1>
+
+
+  <div id="root"></div>
+
+  Name: <input id="inputName" type="text" />
+  <button type="button" onclick="exportFile()">Export file</button>
+
+  <script> 
+   // export file
+   // abc_hhmmss
+   // ms: 1000
+   // seconds: 1s = 1 * 1000
+   // minitues: 1p = 1 * 60 * 1000
+   // hours = 1h = 1 * 60 * 60 * 1000
+   const dayOfWeek = ['Sunday','Monday','Tuesday','Wednesday','Thusday','Friday','Saturday']
+
+   
+   const date = new Date(); // current date
+   const dateCustom = new Date(2020, 2, 20) // custom datwe
+   console.log(dateCustom);
+   console.log('get year: ', date.getFullYear());
+   console.log('get day of week: ', dayOfWeek[date.getDay()])
+   console.log('get date of months: ', date.getDate())
+   console.log('get months ', date.getMonth() + 1)
+
+
+  // export file
+  function twoNumber(number) {
+    if(number < 10) return `0${number}`;
+    return number;
+  }
+
+  function exportFile() {
+    const name = document.getElementById('inputName').value;
+    const date= new Date();
+    const month = twoNumber(date.getMonth() + 1);
+    const year = date.getFullYear();
+    const day = twoNumber(date.getDate());
+    const hour = twoNumber(date.getHours());
+    const min = twoNumber(date.getMinutes());
+    const second = twoNumber(date.getSeconds());
+
+    // format filename: name_yyyymmdd_hhmmss
+    const fileName = `${name}_${year}${month}${day}_${hour}${min}${second}`;
+    console.log('export file: ', fileName)
+  }
+
+  let initData = null; // init data
+  // initData = {}; // BE response data
+
+  // console.log('object: ',  Object.keys(object).length >= 0)
+  console.log('object: ',  !!initData)
+
+  </script>
+
+</body>
+</html>
+
