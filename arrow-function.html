@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>Arrow function</h1>
+
+  <script> 
+  const cars = {
+    price: 800,
+    branch: 'vovlo',
+    getBrach: function() {
+      console.log('getBrach: ', this.branch)
+    },
+    getPrice: () => {
+      const that = cars;
+      console.log('getPrice: ', that.price )
+    }
+  }
+
+  cars.getBrach();
+  cars.getPrice();
+
+
+  // specify paramater
+  const demo1 = () => {
+    console.log("demo1")
+  }
+  const demo2 = x => {
+    console.log("demo2", x)
+  }
+  const demo3 = (x, y) => x + y; 
+  const demo4 = (x, y) => {
+    if(x === 0) {
+      console.log('x not 0')
+      return false;
+    }
+    if(y === 0) {
+      console.log('y not 0')
+      return false;
+    }
+    return x + y
+  }
+  const checkNumber = demo4(-1, 0);
+  if(checkNumber < 0) {
+    // some thing
+  }
+
+  // return object literal
+  const users = (name, age) => {
+    console.log('users: abc', name)
+    return {
+      name, age
+    }
+  }
+  const usersObject = (name, age) => ({ name, age })
+  console.log(usersObject('truong', 18));
+
+  </script>
+
+</body>
+</html>
