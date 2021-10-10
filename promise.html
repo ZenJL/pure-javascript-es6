@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>Promise</h1>
+
+  <script> 
+    const togglePromise = false;
+    let isLoading = false;
+
+    function plus(a){
+      return a 
+    };
+
+    isLoading = true;
+    const p = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if(togglePromise) {
+          resolve(10)
+        } else {
+          reject(10);
+        }
+      }, 2000)
+    });
+
+    Promise.resolve(120).then(value => console.log('create promise way 2 fullfiment: ', value))
+    Promise.reject(120).catch(value => console.log('create promise way 2 rejection: ', value))
+    // p
+    //   .then(value => {
+    //     const res = plus(value);
+    //     console.log(res)
+    //   })
+    //   .catch(error => {
+    //     console.log({error})
+    //   })
+    //   .finally(() => {
+    //     isLoading = false;
+    //     console.log('finally: ', isLoading)
+    //   })
+
+    p
+      .then(
+        value => {
+          const res = plus(value);
+          console.log(res)
+        },
+        error => {
+          console.log("error callback: ", error)
+        }
+      )
+      .finally(() => {
+        isLoading = false;
+        console.log('finally: ', isLoading)
+      })
+      console.log(isLoading)
+
+      // create httpGet
+      function httpGet(url, method = 'GET') {
+        return new Promise((resovle, reject) => {
+          fetch(url, {
+            method 
+          })
+          .then(res => res.json())
+          .then(data => resovle(data)) // fullfilments
+          .catch(error => reject(error))
+        })
+      };
+
+      function httpFetch(url, method = 'GET') {
+        return fetch(url, {
+                method 
+              })
+              .then(res => res.json())
+              .then(data => resovle(data)) // fullfilments
+              .catch(error => reject(error))
+      }
+
+      // httpGet('https://tony-json-server.herokuapp.com/api/users')
+      //   .then(value => {
+      //     console.log('httGet: ', value)
+      //     httpGet('https://tony-json-server.herokuapp.com/api/todos')
+      //     .then(value => {
+      //       console.log('httGet: ', value)
+      //     })
+      //   })
+
+
+      /* === chaining promise === */
+      const pChaning = (value) => {
+        return new Promise(resolve => {
+          resolve(value)
+        })
+      };
+
+      pChaning(1)
+        .then(value => {
+          console.log('pChaining 1: ', value)
+          return value + 1  // 1 + 1 = 2 -> promise 
+        })
+        .then(value => {
+          console.log('pChaining 2: ', value)
+          return value + 3  // 2 + 3 = 5
+        })
+        .then(value => {
+          console.log('pChaining: ', value) // 5
+        })
+
+      let datas = { }
+      /* === promise all === */
+      // promise will be rejection when one in api call failure
+      Promise.all([httpGet('https://tony-json-server.herokuapp.com/api/todos'), httpGet('https://tony-json-server.herokuapp.com/api/users')])
+        .then(value => {
+          datas.todos = value[0].data;
+          datas.users = value[1].data;
+          console.log('promiseall: ', datas)
+        })
+        .catch(err => {
+          console.log('promiseall err: ', err)
+        })
+
+        /* === promise race === */
+        const pRace1 =  new Promise(resolve => {
+          setTimeout(() => {
+            resolve('one')
+          }, 500)
+        })
+        const pRace2 =  new Promise((resolve, reject) => {
+          setTimeout(() => {
+            reject('two')
+          }, 500)
+        })
+        Promise.race([pRace2, pRace1]).then(value => {
+          console.log("promise race: ", value)
+        })
+  </script>
+
+</body>
+</html>
