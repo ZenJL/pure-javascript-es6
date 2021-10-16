@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+
+  <h1>Module Javascript</h1>
+
+  <script type="module"> 
+    import { sayHi } from './sayHi.js';
+    import { getHref, getPort } from './url.js';
+    console.log(sayHi('truong'))
+
+    const resHref = getHref();
+    const resPort= getPort();
+    console.log({ resHref, resPort })
+
+
+  </script>
+
+</body>
+</html>
+
