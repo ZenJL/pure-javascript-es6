@@ -8,13 +8,17 @@
   <h1>Module Javascript</h1>
 
   <script type="module"> 
-    import { sayHi } from './sayHi.js';
+    import demo2Default, { sayHi } from './sayHi.js'; // developer A
+    import { sayHi as sayHi2 } from './sayHi2.js'; // developer B
     import { getHref, getPort } from './url.js';
     console.log(sayHi('truong'))
+    console.log(sayHi2('sayHi2'))
 
     const resHref = getHref();
     const resPort= getPort();
     console.log({ resHref, resPort })
+
+    console.log('demo export default: ', demo2Default())
 
 
   </script>
